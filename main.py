@@ -34,4 +34,4 @@ def medico():
         print("No se encontró diagnóstico.")
 
 if __name__ == "__main__":
-    main()
+    medico()
