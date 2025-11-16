@@ -4,7 +4,9 @@ from openai import OpenAI
 import requests
 from dotenv import load_dotenv
 import os
-from inferir import inferir_tema
+from analisis import identificar_tema
+from inferencia import *
+from tokenizacion import generar_respuesta
 
 load_dotenv()
 
@@ -26,6 +28,7 @@ def get_ai_reponse(inferencia, prompt):
             max_tokens=500,
         )
         return response.choices[0].message.content
+
     except Exception as e:
         return f"Error al generar la respuesta"
     
@@ -44,27 +47,28 @@ def main(page: Page):
         expand=True
     )
 
-    mode_dropdown = Dropdown(
-        value="Conversación General",
-        label="Modo",
-        border_color=Colors.BLUE_200,
-        color=Colors.WHITE,
-        options=[
-            dropdown.Option("Conversación General", "chat"),
-            dropdown.Option("Modo Divertido", "fun"),
-        ]
-    )
-
     chat_area = Column(scroll="auto", expand=True)
 
     def send_message(e):
+        kb_musica = "kb/kb_musica.json"
+        kb_metro = "kb/kb_metro.json"
+        kb_medico = "kb/kb_medico.json"
+        kb_general = "kb/kb_general.json"
+
         user_message = input_box.value
         if not user_message:
             return
         
         chat_area.controls.append(Text(f"Tu: {user_message}", color=Colors.WHITE))
 
-        response = inferir_tema(user_message)
+        tema = identificar_tema(user_message)
+
+        if tema == "musica":
+            response = generar_respuesta(tema,inferir_recomendacion_musica(user_message, kb_musica),kb_musica)
+        if tema == "medicina":
+            response = generar_respuesta(tema,inferir_enfermedad(user_message,kb_medico),kb_medico)
+        if tema == "tema general": 
+            response = generar_respuesta(tema,user_message,kb_general)
 
         chat_area.controls.append(Text(f"DinoBot: {response}", color=Colors.BLUE_200))
         
@@ -86,12 +90,9 @@ def main(page: Page):
         expand=True
     )
     
-    print("Chat container bgcolor:", chat_container.bgcolor)  # Debug
-
     input_container = Container(
         content=Row(  
             controls=[
-                mode_dropdown,
                 input_box,
                 send_button
             ],
