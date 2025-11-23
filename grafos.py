@@ -241,4 +241,4 @@ def buscar_estacion(mapa, nombre):
 
 mapa = iniciar_mapa("kb/kb_metro.json")
 
-print(a_star_ruta("cuatro caminos", "san antonio abad", mapa))
+print(a_star_ruta("panteones", "general anaya", mapa))

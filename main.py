@@ -7,6 +7,7 @@ import os
 from analisis import identificar_tema
 from inferencia import *
 from tokenizacion import generar_respuesta
+from amor import resolver_ruta
 
 load_dotenv()
 
@@ -67,8 +68,11 @@ def main(page: Page):
             response = generar_respuesta(tema,inferir_recomendacion_musica(user_message, kb_musica),kb_musica)
         if tema == "medicina":
             response = generar_respuesta(tema,inferir_enfermedad(user_message,kb_medico),kb_medico)
-        if tema == "tema general": 
+        if tema == "metro":
+            response = resolver_ruta(user_message,kb_metro)
+        else: 
             response = generar_respuesta(tema,user_message,kb_general)
+        
 
         chat_area.controls.append(Text(f"DinoBot: {response}", color=Colors.BLUE_200))
         
