@@ -1,8 +1,7 @@
 # 🦖 DinoBot - Asistente Virtual Inteligente
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Repo Size](https://img.shields.io/badge/repo-size--dynamic-lightgrey.svg)](https://github.com/tu-usuario/dinobot)
+[![Repo Size](https://img.shields.io/badge/repo-size--dynamic-lightgrey.svg)](https://github.com/JysusAle/asistente-virtual-ia.git)
 
 **DinoBot** es un asistente virtual de escritorio desarrollado en Python que combina múltiples disciplinas de la Inteligencia Artificial: procesamiento de lenguaje natural (NLP), sistemas expertos basados en conocimiento, algoritmos de búsqueda en grafos y sistemas de recomendación vectorial.
 
