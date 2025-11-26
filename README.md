@@ -124,15 +124,7 @@ python -m spacy download es_core_news_md
 python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 ```
 
-### 5\. Configurar Variables de Entorno (Opcional)
-
-Si planeas usar funciones que requieran API keys (p. ej. OpenAI), crea un archivo `.env` en la raíz con:
-
-```
-OPENAI_API_KEY=tu_clave_aqui
-```
-
-### 6\. Ejecutar la aplicación
+### 5\. Ejecutar la aplicación
 
 ```bash
 python main.py
